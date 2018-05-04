@@ -15,19 +15,23 @@ var pug = require('gulp-pug');
 var imageMin = require('gulp-imagemin');
 var cache = require('gulp-cache');
 var notify = require('gulp-notify');
-
+var gulpCopy = require('gulp-copy');
 var paths = {
 	src : {
-		styles : 'src/assets/styles/**/*.sass',
+		styles : 'src/assets/styles/**',
 		scripts : 'src/assets/scripts/**/*.js',
 		template : 'src/template/**/*.pug',
-		images : 'src/assets/images/**'
+		images : 'src/assets/images/**',
+		plugin: 'src/assets/plugin/**',
+		libcopy: 'src/assets/lib/**'
 	},
 	dest : {
 		styles : './dist/assets/styles/',
 		scripts : './dist/assets/scripts/',
 		template : "./dist/",
-		images : './dist/assets/images/'
+		images : './dist/assets/images/',
+		plugin : './dist/assets/plugin/',
+		libcopy : './dist/assets/lib/'
 	}
 }
 
@@ -76,7 +80,15 @@ gulp.task('image',function(){
         .pipe(browserSync.stream())
         .pipe(notify('image task finished'))
 });
-gulp.task('default',['pug', 'sass', 'js', 'image'] , function(){
+gulp.task('copy', function(){
+    gulp.src([paths.src.plugin])
+        .pipe(gulp.dest(paths.dest.plugin))
+});
+gulp.task('lib', function(){
+    gulp.src([paths.src.libcopy])
+        .pipe(gulp.dest(paths.dest.libcopy))
+});
+gulp.task('default',['pug', 'sass', 'js', 'image', 'copy', 'lib'] , function(){
     browserSync.init({
         server: "./dist"
     });

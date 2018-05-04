@@ -1,12 +1,36 @@
 doctype html
-html(lang='en')
-	head
-		title Titre
-		meta(charset='UTF-8')
-		meta(name="viewport", content="width=device-width, initial-scale=1")
-		link(rel="stylesheet", href="assets/styles/main.css")
-	body
-		h1.title
-			| Reveal JS
-		// scripts
-		//script(src="assets/scripts/app.js")
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
+    title reveal.js
+    link(rel='stylesheet', href='assets/styles/reveal.css')
+    link(rel='stylesheet', href='assets/styles/theme/black.css')
+    // Theme used for syntax highlighting of code
+    link(rel='stylesheet', href='assets/lib/css/zenburn.css')
+    // Printing and PDF exports
+    script.
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'assets/styles/print/pdf.css' : 'assets/styles/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+  body
+    .reveal
+      .slides
+        section Slide 1
+        section Slide 2
+    script(src='assets/lib/js/head.min.js')
+    script(src='assets/scripts/reveal.js')
+    script.
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+      dependencies: [
+      { src: 'assets/plugin/markdown/marked.js' },
+      { src: 'assets/plugin/markdown/markdown.js' },
+      { src: 'assets/plugin/notes/notes.js', async: true },
+      { src: 'assets/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+      ]
+      });
