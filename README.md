@@ -1,4 +1,4 @@
-# Hangman-Le-Pendu-
+# Presentation
 
 ##### Version
 
@@ -20,9 +20,6 @@ visite [Nodejs](http://nodejs.org/) site to install
 $ npm i -g nstall gulp
 
 ```
-
-* Gulp in global
-
 
 
 ### Installation
